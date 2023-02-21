@@ -1,16 +1,19 @@
-<h2>
-<%= @task.title %>
-</h2>
-<p>
-<%= @task.details %>
+<div class="card w-25 my-4">
+<div class="card-body">
+<h5 class="card-title mb-4">
+  <%= @task.title %>
+</h5>
+<p class="card-text">
+  <%= @task.details %>
 </p>
-<p>
-  This task is <%= @task.completed ? "completed" : "not completed" %>
-</p>
-<%= link_to "Delete",
-  task_path(@task),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%>
-
-<%= link_to "edit this task", edit_task_path(@task) %>
-<%= link_to "tasks", tasks_path %>
+<%= link_to "edit this task", edit_task_path(@task), class: "card-link" %>
+</div>
+<ul class="list-group list-group-flush">
+<% if @task.completed %>
+  <li class="list-group-item list-group-item-success">This task is completed</li>
+<% else %>
+  <li class="list-group-item list-group-item-danger">This task is not completed</li>
+<% end %>
+</ul>
+</div>
+<%= link_to "tasks", tasks_path, class: "btn btn-outline-primary" %>
